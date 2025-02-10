@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Falling letters</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font: 16px Arial, sans-serif;
+        background: radial-gradient(
+          circle,
+          rgba(255, 0, 255, 0.7) 20%,
+          rgba(0, 0, 0, 0) 80%
+        );
+      }
+      #start-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        width: 300px;
+        background-color: black;
+        color: white;
+        padding: 16px;
+        gap: 16px;
+        border-radius: 8px;
+      }
+      #game-container {
+        display: none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+      }
+      #sidebar {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        background-color: white;
+        color: black;
+        gap: 8px;
+        padding: 10px;
+      }
+      #score {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      fieldset {
+        display: flex;
+        justify-content: center;
+      }
+      #result-text {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+      #result-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        gap: 16px;
+        padding: 16px;
+        border-radius: 8px;
+        display: none;
+        z-index: 1;
+      }
+      button {
+        border: 1px solid black;
+        padding: 8px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        width: fit-content;
+        &:hover {
+          background-color: #eee;
+        }
+      }
+      #start-btn,
+      #pause-btn {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="start-screen">
+      <h1>Falling letters</h1>
+      <ul class="game-info">
+        <li>
+          Cílem hry je dosáhnout 50 bodů správným mačkáním kláves odpovídajících
+          padajícím písmenům.
+        </li>
+        <li>
+          Pokud jsou na obrazovce alespoň dvě stejná písmena a stisknete
+          odpovídající klávesu, získáte 1 bod.
+        </li>
+        <li>
+          Pokud je na obrazovce pouze jedno takové písmeno nebo žádné a
+          stisknete odpovídající klávesu, ztratíte 2 body.
+        </li>
+      </ul>
+      <button id="start-btn">Hrát</button>
+    </div>
+    <div id="result-container">
+      <span id="result-text"></span>
+      <button id="restart-btn">Restart</button>
+    </div>
+    <div id="game-container"></div>
+    <div id="sidebar">
+      <fieldset id="score-container">
+        <legend>Skóre</legend>
+        <span id="score"></span>
+      </fieldset>
+      <button id="pause-btn">Pozastavit</button>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
